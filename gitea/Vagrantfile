@@ -1,0 +1,45 @@
+# init script
+$init = <<SCRIPT
+#!/bin/bash
+
+sudo apt -y update
+sudo apt install -y curl git
+SCRIPT
+
+# Gitea
+$gitea = <<SCRIPT
+#!/bin/bash
+
+# https://docs.gitea.io/en-us/install-from-binary/
+# Install
+curl -q -Lo gitea https://dl.gitea.io/gitea/master/gitea-master-linux-amd64
+chmod +x gitea
+
+sudo mv gitea /usr/local/bin/
+sudo adduser --system --shell /bin/bash --gecos "Git Version Control" --group --disabled-password --home /home/git git
+sudo mkdir -p /var/lib/gitea/{custom,data,log}
+sudo chown -R git:git /var/lib/gitea/
+sudo chmod -R 750 /var/lib/gitea/
+sudo mkdir /etc/gitea
+sudo chown root:git /etc/gitea
+sudo chmod 770 /etc/gitea
+
+# Service
+curl -q -Lo gitea.service https://raw.githubusercontent.com/go-gitea/gitea/master/contrib/systemd/gitea.service
+sudo mv gitea.service /etc/systemd/system/
+sudo systemctl enable gitea
+sudo systemctl start gitea
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "debian/buster64"
+  config.vm.hostname = "gitea"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  config.vm.provision "shell", inline: $init, privileged: false
+  config.vm.provision "shell", inline: $gitea, privileged: false
+
+  config.vm.network :forwarded_port, guest: 3000, host: 3000
+
+  config.vbguest.auto_update = false
+end
