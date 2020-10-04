@@ -6,7 +6,31 @@ My development environment test.
 - Jenkins.
 - minikube (kubernetes).
 
+## Flow
+
++-----------------------------------------------------+
+|                                                     |
+| Vagrant: VirtualBox or KVM                          |
+|                                                     |
+|                     +--------+                      |
+|                     | Docker |                      |
+|                     +---+----+                      |
+|                         |                           |
+|    +-----------+--------+--------+------------+     |
+|    |           |                 |            |     |
+|    |           |                 |            |     |
+|    |           |                 |            |     |
+| +--+--+    +---+---+        +----+---+   +----+---+ |
+| |Gitea|    |Jenkins|        |Registry|   |Minikube| |
+| +-----+    +-------+        +--------+   +--------+ |
+|                                                     |
++-----------------------------------------------------+
+
 ## Prerequisites
 
 - VirtualBox | KVM
 - Vagrant
+
+## Gitea
+
+- Create gitea user.
