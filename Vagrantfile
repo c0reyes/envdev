@@ -8,7 +8,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, path: "scripts/jenkins.sh"
   config.vm.provision :shell, path: "scripts/minikube.sh"
   config.vm.provision :shell, path: "scripts/motd.sh"
-  config.vm.provision :shell, path: "scripts/start_minikube.sh", run: "always"
 
   config.vm.network :forwarded_port, guest: 5000, host: 5000
   config.vm.network :forwarded_port, guest: 3000, host: 3000
