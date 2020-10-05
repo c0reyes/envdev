@@ -36,3 +36,7 @@
 ## Jenkins
 
 - Default username/password: admin/admin
+
+## Examples
+
+- [Greeting](https://github.com/c0reyes/Greeting)
