@@ -32,3 +32,7 @@
 ## Gitea
 
 - Create gitea user.
+
+## Jenkins
+
+- Default username/password: admin/admin
