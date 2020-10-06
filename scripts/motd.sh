@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 export OUTSIDE=$(ip -4 addr show scope global dev docker0 | grep inet | awk '{print $2}' | cut -d / -f 1)
+export NET=$(ip -4 addr show dev docker0 | grep inet | awk '{print $2}')
 
 cat <<EOF | tee /etc/motd
 
@@ -37,7 +38,11 @@ bash /vagrant/scripts/ports-fwd.sh
 
 KubeConfig:
 
-kubectl config view --flatten --minify
+kubectl config view --flatten
+
+Start Minikube:
+
+minikube start --driver docker --insecure-registry ${NET}
 
 
 EOF

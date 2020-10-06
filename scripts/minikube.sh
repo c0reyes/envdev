@@ -22,6 +22,6 @@ EOF
 
 NET=$(ip -4 addr show dev docker0 | grep inet | awk '{print $2}')
 
-su - vagrant -c "minikube start --insecure-registry ${NET}"
+su - vagrant -c "minikube start --driver docker --insecure-registry ${NET}"
 su - vagrant -c "minikube kubectl -- get pods -A"
 su - vagrant -c "minikube addons enable ingress"
