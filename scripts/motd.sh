@@ -7,7 +7,7 @@ cat <<EOF | tee /etc/motd
 
 Minikube start/stop commands:
 
-minikube start
+minikube start --driver docker --insecure-registry ${NET}
 minikube stop
 
 Kubectl commands:
@@ -39,10 +39,5 @@ bash /vagrant/scripts/ports-fwd.sh
 KubeConfig:
 
 kubectl config view --flatten
-
-Start Minikube:
-
-minikube start --driver docker --insecure-registry ${NET}
-
 
 EOF
