@@ -42,3 +42,4 @@
 ## Examples
 
 - [Greeting](https://github.com/c0reyes/Greeting)
+- [JPAtest](https://github.com/c0reyes/JPAtest)
