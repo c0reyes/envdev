@@ -43,3 +43,4 @@
 
 - [Greeting](https://github.com/c0reyes/Greeting)
 - [JPAtest](https://github.com/c0reyes/JPAtest)
+- [CRUDtest](https://github.com/c0reyes/CRUDtest)
